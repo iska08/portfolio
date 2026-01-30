@@ -135,12 +135,27 @@ function initializeScrollAnimations() {
     });
 }
 
+function updateProjectCount() {
+    const projectCards = document.querySelectorAll('.project-card');
+    const projectCount = projectCards.length;
+
+    // Update counter di hero stats
+    const projectCounter = document.querySelector('.stat-number[data-count]');
+    if (projectCounter) {
+        projectCounter.setAttribute('data-count', projectCount);
+        projectCounter.textContent = '0';
+        // Trigger counter animation again
+        initializeCounters();
+    }
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     initializeTypingAnimation();
     initializeCounters();
     initializeSkillBars();
     initializeScrollAnimations();
+    updateProjectCount();
 
     // Add scroll event for navigation highlight
     window.addEventListener('scroll', () => {
