@@ -1,0 +1,128 @@
+/* Tablet */
+
+@media (max-width: 1024px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .hero-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    .about-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    .contact-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 768px) {
+    .hamburger {
+        display: block;
+    }
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: rgba(10, 10, 15, 0.95);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        padding: 2rem 0;
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+    }
+    .nav-menu.active {
+        left: 0;
+    }
+    .hero-title {
+        font-size: 2.2rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .section-title {
+        font-size: 2rem;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    .stat-card {
+        padding: 1rem;
+    }
+    .stat-number {
+        font-size: 2rem;
+    }
+    .timeline::before {
+        left: 30px;
+    }
+    .timeline-item {
+        flex-direction: column !important;
+    }
+    .timeline-date,
+    .timeline-content {
+        width: 100%;
+        text-align: left !important;
+        padding-left: 60px;
+    }
+    .timeline-date {
+        margin-bottom: 0.5rem;
+    }
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .skills-container {
+        grid-template-columns: 1fr;
+    }
+    .soft-skills-tags {
+        gap: 0.5rem;
+    }
+    .soft-skills-tags span {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Small Mobile */
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+        text-align: center;
+    }
+    .container {
+        padding: 0 15px;
+    }
+    .contact-form {
+        padding: 1.5rem;
+    }
+}

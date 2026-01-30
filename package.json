@@ -1,0 +1,24 @@
+{
+    "name": "portfolio-website",
+    "version": "1.0.0",
+    "description": "Modern portfolio website for As'ad Muhaimin Iskandar",
+    "main": "index.html",
+    "scripts": {
+        "start": "live-server --port=3000",
+        "deploy": "gh-pages -d ."
+    },
+    "keywords": [
+        "portfolio",
+        "web-developer",
+        "frontend",
+        "backend",
+        "laravel",
+        "php"
+    ],
+    "author": "As'ad Muhaimin Iskandar",
+    "license": "MIT",
+    "devDependencies": {
+        "live-server": "^1.2.2",
+        "gh-pages": "^5.0.0"
+    }
+}
