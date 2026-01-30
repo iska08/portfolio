@@ -30,22 +30,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Contact Form Submission
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    // Get form data
-    const formData = new FormData(this);
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const message = formData.get('message');
-
-    // In a real application, you would send this to a server
-    // For now, we'll just show a success message
-    alert('Thank you for your message! I will get back to you soon.');
-    this.reset();
-});
-
 // Initialize counters
 function initializeCounters() {
     const counters = document.querySelectorAll('.stat-number');
@@ -141,7 +125,7 @@ function initializeScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    document.querySelectorAll('.stat-card, .project-card, .skill-category, .contact-item').forEach(el => {
+    document.querySelectorAll('.stat-card, .project-card, .skill-category, .contact-item-centered, .social-btn').forEach(el => {
         observer.observe(el);
     });
 
