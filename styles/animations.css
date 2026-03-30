@@ -1,3 +1,5 @@
+/* animations.css */
+
 @keyframes gradient-shift {
     0% {
         background-position: 0% 50%;
@@ -174,4 +176,61 @@
 
 .skill-category:nth-child(3) {
     transition-delay: 0.3s;
+}
+
+
+/* Vibe Coding specific animations */
+
+@keyframes ai-pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 217, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 217, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 217, 255, 0);
+    }
+}
+
+@keyframes data-stream {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 200% 50%;
+    }
+}
+
+
+/* AI tool icons animation */
+
+.tech-icons i.fa-robot {
+    animation: ai-pulse 2s infinite;
+}
+
+
+/* Skill bar animation with gradient flow */
+
+.skill-level {
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color), var(--primary-color));
+    background-size: 200% auto;
+    animation: data-stream 3s linear infinite;
+}
+
+
+/* Enhanced glow for Vibe Coding elements */
+
+.project-card:hover .project-badge {
+    animation: glow 1.5s ease-in-out infinite;
+}
+
+
+/* Typing cursor enhancement */
+
+.cursor {
+    background: var(--primary-color);
+    width: 3px;
+    display: inline-block;
+    margin-left: 2px;
 }

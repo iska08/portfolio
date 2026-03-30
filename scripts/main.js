@@ -1,3 +1,5 @@
+// main.js
+
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -179,3 +181,74 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+function initializeTypingAnimation() {
+    const textElement = document.querySelector('.typing-text');
+    const texts = [
+        "Vibe Coding Specialist",
+        "Back End Developer",
+        "Laravel × AI Expert",
+        "Prompt Engineer",
+        "Full Stack Developer"
+    ];
+
+    let textIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let isPaused = false;
+
+    function type() {
+        const currentText = texts[textIndex];
+
+        if (!isDeleting && !isPaused) {
+            textElement.textContent = currentText.substring(0, charIndex + 1);
+            charIndex++;
+
+            if (charIndex === currentText.length) {
+                isPaused = true;
+                setTimeout(() => {
+                    isPaused = false;
+                    isDeleting = true;
+                }, 1500);
+            }
+        } else if (isDeleting && !isPaused) {
+            textElement.textContent = currentText.substring(0, charIndex - 1);
+            charIndex--;
+
+            if (charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+            }
+        }
+
+        setTimeout(type, isDeleting ? 50 : 100);
+    }
+
+    setTimeout(type, 1000);
+}
+
+// Update the stat counter initialization to reflect Vibe Coding stats
+function initializeCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const duration = 2000;
+        const increment = target / (duration / 16);
+
+        let current = 0;
+        const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                if (target === 9) counter.textContent = "9+";
+                else if (target === 30) counter.textContent = "30%";
+                else counter.textContent = target;
+                clearInterval(timer);
+            } else {
+                if (target === 9) counter.textContent = Math.floor(current) + "+";
+                else if (target === 30) counter.textContent = Math.floor(current) + "%";
+                else counter.textContent = Math.floor(current);
+            }
+        }, 16);
+    });
+}

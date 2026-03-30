@@ -1,3 +1,5 @@
+/* main.css */
+
 :root {
     --primary-color: #00d9ff;
     --secondary-color: #ff00ff;
@@ -932,6 +934,7 @@ body {
 
 .contact-icon {
     width: 60px;
+    min-width: 60px;
     height: 60px;
     background: var(--gradient);
     border-radius: 50%;
@@ -940,27 +943,35 @@ body {
     justify-content: center;
     font-size: 1.5rem;
     color: white;
+    flex-shrink: 0;
 }
 
 .contact-details {
     text-align: left;
     flex: 1;
+    min-width: 0;
 }
 
 .contact-details h3 {
     color: var(--primary-color);
     margin-bottom: 0.5rem;
+    font-size: 1.1rem;
 }
 
 .contact-details p {
     color: var(--text-secondary);
     margin: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .contact-details a {
     color: var(--text-color);
     text-decoration: none;
     transition: color 0.3s;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .contact-details a:hover {
@@ -1011,4 +1022,75 @@ body {
 
 .footer p {
     margin-bottom: 0.5rem;
+}
+
+
+/* Vibe Coding Accent */
+
+.accent-text {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+
+/* Enhanced stat icons */
+
+.stat-icon i {
+    font-size: 2rem;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+
+/* Vibe Coding category specific styling */
+
+.skill-category:first-child {
+    border: 1px solid rgba(0, 217, 255, 0.3);
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.1);
+}
+
+.skill-category:first-child h3 i {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+
+/* Project card badge enhancement */
+
+.project-badge i.fa-robot {
+    animation: glow 2s ease-in-out infinite;
+}
+
+
+/* Timeline badge enhancement for Vibe Coding items */
+
+.timeline-item:first-child .timeline-badge {
+    background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+    animation: pulse 2s ease-in-out infinite;
+}
+
+
+/* Hero description highlight */
+
+.hero-description strong {
+    color: var(--primary-color);
+}
+
+
+/* Additional hover effects */
+
+.stat-card:hover .stat-icon i {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+
+/* Vibe Coding tag styling */
+
+.project-tags span:first-child {
+    background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 255, 170, 0.2));
+    border: 1px solid var(--accent-color);
 }
