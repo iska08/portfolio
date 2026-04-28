@@ -1156,7 +1156,7 @@ body {
 }
 
 
-/* Pipeline Visualization */
+/* Pipeline Visualization - Horizontal layout (desktop) */
 
 .pipeline-visual {
     background: rgba(0, 0, 0, 0.3);
@@ -1164,14 +1164,18 @@ body {
     padding: 1.5rem;
     margin-top: 2rem;
     border: 1px solid rgba(0, 217, 255, 0.2);
+    overflow-x: auto;
+    /* Allow scroll on small screens if needed */
 }
 
 .pipeline-steps {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
     gap: 0.5rem;
+    flex-wrap: nowrap;
+    /* Force single line on desktop */
+    min-width: min-content;
 }
 
 .pipeline-step {
@@ -1181,6 +1185,7 @@ body {
     background: rgba(0, 217, 255, 0.1);
     border-radius: 10px;
     position: relative;
+    min-width: 80px;
 }
 
 .pipeline-step i {
@@ -1198,11 +1203,42 @@ body {
 .pipeline-arrow {
     color: var(--primary-color);
     font-size: 1.2rem;
+    flex-shrink: 0;
 }
+
+
+/* Tablet responsive - keep horizontal but smaller */
 
 @media (max-width: 768px) {
     .pipeline-steps {
+        gap: 0.3rem;
+    }
+    .pipeline-step {
+        padding: 0.5rem;
+        min-width: 60px;
+    }
+    .pipeline-step i {
+        font-size: 1.2rem;
+    }
+    .pipeline-step span {
+        font-size: 0.7rem;
+    }
+    .pipeline-arrow {
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Mobile responsive - stack vertically only on very small screens */
+
+@media (max-width: 550px) {
+    .pipeline-steps {
         flex-direction: column;
+        gap: 0.5rem;
+    }
+    .pipeline-step {
+        width: 100%;
+        min-width: auto;
     }
     .pipeline-arrow {
         transform: rotate(90deg);
