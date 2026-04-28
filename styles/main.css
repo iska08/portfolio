@@ -1094,3 +1094,117 @@ body {
     background: linear-gradient(135deg, rgba(0, 217, 255, 0.2), rgba(0, 255, 170, 0.2));
     border: 1px solid var(--accent-color);
 }
+
+
+/* DevOps & CI/CD Skills Section Enhancement */
+
+.skill-category.devops-category {
+    border: 1px solid rgba(36, 150, 237, 0.3);
+    box-shadow: 0 0 20px rgba(36, 150, 237, 0.1);
+}
+
+.skill-category.devops-category h3 i {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.devops-tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.devops-tool-item {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.devops-tool-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-color);
+    background: rgba(0, 217, 255, 0.1);
+}
+
+.devops-tool-item i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.devops-tool-item i.fa-docker {
+    color: #2496ed;
+}
+
+.devops-tool-item i.fa-gitlab {
+    color: #fc6d26;
+}
+
+.devops-tool-item i.fa-github {
+    color: #ffffff;
+}
+
+.devops-tool-item span {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+}
+
+
+/* Pipeline Visualization */
+
+.pipeline-visual {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border: 1px solid rgba(0, 217, 255, 0.2);
+}
+
+.pipeline-steps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.pipeline-step {
+    flex: 1;
+    text-align: center;
+    padding: 0.8rem;
+    background: rgba(0, 217, 255, 0.1);
+    border-radius: 10px;
+    position: relative;
+}
+
+.pipeline-step i {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: var(--primary-color);
+}
+
+.pipeline-step span {
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.pipeline-arrow {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .pipeline-steps {
+        flex-direction: column;
+    }
+    .pipeline-arrow {
+        transform: rotate(90deg);
+    }
+}

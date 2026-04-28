@@ -1,5 +1,4 @@
 // particles.js
-
 // Particles.js configuration
 particlesJS('particles-js', {
     particles: {

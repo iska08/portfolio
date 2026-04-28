@@ -1,18 +1,19 @@
-// main.js
-
+// scripts/main.js
 // Mobile Navigation Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-});
+if (hamburger) {
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+}
 
 // Close mobile menu when clicking on a link
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    hamburger.classList.remove('active');
-    navMenu.classList.remove('active');
+    if (hamburger) hamburger.classList.remove('active');
+    if (navMenu) navMenu.classList.remove('active');
 }));
 
 // Smooth scrolling for navigation links
@@ -38,17 +39,32 @@ function initializeCounters() {
 
     counters.forEach(counter => {
         const target = parseInt(counter.getAttribute('data-count'));
-        const duration = 2000; // 2 seconds
-        const increment = target / (duration / 16); // 60fps
+        if (isNaN(target)) return;
 
+        const duration = 2000;
+        const increment = target / (duration / 16);
         let current = 0;
+
         const timer = setInterval(() => {
             current += increment;
             if (current >= target) {
-                counter.textContent = target;
+                // Format specific counters with suffixes
+                if (counter.getAttribute('data-count') === '9') {
+                    counter.textContent = "9+";
+                } else if (counter.getAttribute('data-count') === '30') {
+                    counter.textContent = "30%";
+                } else {
+                    counter.textContent = target;
+                }
                 clearInterval(timer);
             } else {
-                counter.textContent = Math.floor(current);
+                if (counter.getAttribute('data-count') === '9') {
+                    counter.textContent = Math.floor(current) + "+";
+                } else if (counter.getAttribute('data-count') === '30') {
+                    counter.textContent = Math.floor(current) + "%";
+                } else {
+                    counter.textContent = Math.floor(current);
+                }
             }
         }, 16);
     });
@@ -59,19 +75,24 @@ function initializeSkillBars() {
     const skillLevels = document.querySelectorAll('.skill-level');
 
     skillLevels.forEach(level => {
-        const width = level.getAttribute('data-level') + '%';
-        level.style.width = width;
+        const width = level.getAttribute('data-level');
+        if (width) {
+            level.style.width = width + '%';
+        }
     });
 }
 
 // Typing animation for hero subtitle
 function initializeTypingAnimation() {
     const textElement = document.querySelector('.typing-text');
+    if (!textElement) return;
+
     const texts = [
+        "Vibe Coding Specialist",
         "Back End Developer",
-        "Laravel Expert",
-        "PHP Developer",
-        "Database Specialist",
+        "Laravel × AI Expert",
+        "DevOps Enthusiast",
+        "Docker & CI/CD Practitioner",
         "Full Stack Developer"
     ];
 
@@ -107,7 +128,6 @@ function initializeTypingAnimation() {
         setTimeout(type, isDeleting ? 50 : 100);
     }
 
-    // Start typing animation
     setTimeout(type, 1000);
 }
 
@@ -127,28 +147,39 @@ function initializeScrollAnimations() {
     }, observerOptions);
 
     // Observe elements for animation
-    document.querySelectorAll('.stat-card, .project-card, .skill-category, .contact-item-centered, .social-btn').forEach(el => {
-        observer.observe(el);
-    });
-
-    // Animate on scroll for all sections
-    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    const elementsToObserve = document.querySelectorAll('.stat-card, .project-card, .skill-category, .contact-item-centered, .social-btn, .devops-tool-item');
+    elementsToObserve.forEach(el => {
         observer.observe(el);
     });
 }
 
+// Update project count in hero stats
 function updateProjectCount() {
     const projectCards = document.querySelectorAll('.project-card');
     const projectCount = projectCards.length;
 
-    // Update counter di hero stats
-    const projectCounter = document.querySelector('.stat-number[data-count]');
+    const projectCounter = document.querySelector('.stat-number[data-count="9"]');
     if (projectCounter) {
         projectCounter.setAttribute('data-count', projectCount);
         projectCounter.textContent = '0';
-        // Trigger counter animation again
-        initializeCounters();
+        setTimeout(() => initializeCounters(), 100);
     }
+}
+
+// DevOps skills animation
+function initializeDevOpsSkills() {
+    const devopsItems = document.querySelectorAll('.devops-tool-item');
+
+    devopsItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+            item.style.transition = 'all 0.5s ease-out';
+            item.style.opacity = '1';
+            item.style.transform = 'translateY(0)';
+        }, 100 + (index * 100));
+    });
 }
 
 // Initialize everything when DOM is loaded
@@ -157,6 +188,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeCounters();
     initializeSkillBars();
     initializeScrollAnimations();
+    initializeDevOpsSkills();
     updateProjectCount();
 
     // Add scroll event for navigation highlight
@@ -168,7 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
             const sectionHeight = section.clientHeight;
-            if (scrollY >= sectionTop - 100) {
+            if (window.scrollY >= sectionTop - 100) {
                 current = section.getAttribute('id');
             }
         });
@@ -181,74 +213,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
-
-function initializeTypingAnimation() {
-    const textElement = document.querySelector('.typing-text');
-    const texts = [
-        "Vibe Coding Specialist",
-        "Back End Developer",
-        "Laravel × AI Expert",
-        "Prompt Engineer",
-        "Full Stack Developer"
-    ];
-
-    let textIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let isPaused = false;
-
-    function type() {
-        const currentText = texts[textIndex];
-
-        if (!isDeleting && !isPaused) {
-            textElement.textContent = currentText.substring(0, charIndex + 1);
-            charIndex++;
-
-            if (charIndex === currentText.length) {
-                isPaused = true;
-                setTimeout(() => {
-                    isPaused = false;
-                    isDeleting = true;
-                }, 1500);
-            }
-        } else if (isDeleting && !isPaused) {
-            textElement.textContent = currentText.substring(0, charIndex - 1);
-            charIndex--;
-
-            if (charIndex === 0) {
-                isDeleting = false;
-                textIndex = (textIndex + 1) % texts.length;
-            }
-        }
-
-        setTimeout(type, isDeleting ? 50 : 100);
-    }
-
-    setTimeout(type, 1000);
-}
-
-// Update the stat counter initialization to reflect Vibe Coding stats
-function initializeCounters() {
-    const counters = document.querySelectorAll('.stat-number');
-
-    counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-count'));
-        const duration = 2000;
-        const increment = target / (duration / 16);
-
-        let current = 0;
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                if (target === 9) counter.textContent = "9+";
-                else if (target === 30) counter.textContent = "30%";
-                else counter.textContent = target;
-                clearInterval(timer);
-            } else {
-                if (target === 9) counter.textContent = Math.floor(current) + "+";
-                else if (target === 30) counter.textContent = Math.floor(current) + "%";
-                else counter.textContent = Math.floor(current);
-            }
-        }, 16);
-    });
-}

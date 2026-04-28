@@ -1,5 +1,4 @@
 // animations.js
-
 // Additional animations
 document.addEventListener('DOMContentLoaded', () => {
     // Add hover effects to project cards
